@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>bird</title>
+	<style type="text/css">
+	canvas{
+		position: absolute;
+		right: 0;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		margin: 100px auto 0;
+		border: 1px solid #000;
+	}
+</style>
+<script type="text/javascript" src="./js/tools.js"></script>
+<script type="text/javascript" src="./js/sky.js"></script>
+<script type="text/javascript" src="./js/land.js"></script>
+<script type="text/javascript" src="./js/bird.js"></script>
+<script type="text/javascript" src="./js/pipe.js"></script>
+<script type="text/javascript">
+	window.onload = function(){
+		loadImage({
+			bird: './images/bird.png',
+			sky: './images/sky.png',
+			land: './images/land.png',
+			pipeDown: './images/pipeDown.png',
+			pipeUp: './images/pipeUp.png'
+		},function(images){
+			var member = [];
+			var cvs = document.getElementById("cvs");
+			var ctx = cvs.getContext("2d");
+			for(var i=0;i<2;i++){
+				member.push(getSky(ctx,images.sky,7));
+			}
+			member.push(getBird(ctx,images.bird,100,100,3,1));
+			for(var i=0;i<7;i++){
+				member.push(getPipe(ctx,images.pipeDown,images.pipeUp,300,150,7));
+			}
+			for(var i=0;i<4;i++){
+				member.push(getLand(ctx,images.land,7));
+			}
+			var bird = getBird();
+			var timer = setInterval(function(){
+				ctx.clearRect(0,0,cvs.width,cvs.height);
+				member.forEach(function(a){
+					a.draw();
+					a.update();
+				})
+				if(bird.y<13
+					||bird.y>cvs.height-images.land.height-bird.img.height+25
+					||ctx.isPointInPath(bird.x+bird.width/2-10,bird.y-5)
+					||ctx.isPointInPath(bird.x+bird.width/2-20,bird.y+18)){
+					clearInterval(timer);
+				}
+				ctx.beginPath();
+			},50)
+		});
+	}
+</script>
+</head>
+<body>
+	<canvas id="cvs" height="600" width="800"></canvas>
+</body>
+</html>
