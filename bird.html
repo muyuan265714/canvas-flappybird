@@ -52,7 +52,7 @@
 					||bird.y>cvs.height-images.land.height-bird.img.height+25
 					||ctx.isPointInPath(bird.x+bird.width/2-10,bird.y-5)
 					||ctx.isPointInPath(bird.x+bird.width/2-20,bird.y+18)){
-					// clearInterval(timer);
+					clearInterval(timer);
 				}
 				ctx.beginPath();
 			},50)
