@@ -1,5 +1,6 @@
 (function(win){
 	function CreateBird(ctx,img,x,y,imgX,imgY){
+		// 初始化数据
 		this.ctx = ctx;
 		this.img = img;
 		this.x = x;
@@ -13,10 +14,13 @@
 		this.update();
 	}
 	extend(CreateBird.prototype,{
+		// 原型添加方法
 		draw:function(){
 			this.y+=this.speed;
 			this.speed+=0.9;
+			// 图片小鸟切换 （翅膀扇动）
 			this.on = ++this.on>=this.imgX ? 0 : this.on;
+			// 小鸟倾斜角度
 			var Angle = Math.PI/180*10;
 			var MaxAngle = Math.PI/180*45;
 			var radian = Angle*this.speed;
@@ -39,15 +43,16 @@
 		},
 		update:function(){
 			var that = this;
+			// 点击上跳
 			this.ctx.canvas.onclick = function(){
 				that.speed = -6;
 			}
 		}
 	});
+	// 第一次创建一个小鸟并返回 第二次返回第一个小鸟
 	var bird = null;
 	function getBird(ctx,img,x,y,imgX,imgY){
 		if(!bird){
-			console.log(img);
 			bird = new CreateBird(ctx,img,x,y,imgX,imgY);
 		}
 		return bird;

@@ -17,6 +17,7 @@
 			this.ctx.drawImage(this.imgUp,this.x,this.yDown);
 			this.path();
 		},
+		// 在管道移动时进行绘制，用于判断小鸟时候触碰管道
 		path:function(){
 			this.ctx.rect(this.x,-this.yUp,this.imgDown.width,this.imgDown.height);
 			this.ctx.rect(this.x,this.yDown,this.imgDown.width,this.imgDown.height);

@@ -1,4 +1,5 @@
 (function(win){
+	// extend方法 - 挂载方法
 	function extend(obj1,obj2){
 		for(var key in obj2){
 			if(!obj1.hasOwnProperty(key)){
@@ -17,6 +18,7 @@
 		var	loadedImgNum=0;
 		//加载图片
 		for(var imgName in imgObj){
+			// 当图片全部加载之后再调用回调函数运行游戏
 			imgNum++;
 			var img = new Image();
 			img.src=imgObj[imgName];
