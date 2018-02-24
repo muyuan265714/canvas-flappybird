@@ -1,5 +1,4 @@
-(function(win){
-	// extend方法 - 挂载方法
+define(["tools"],function(){
 	function extend(obj1,obj2){
 		for(var key in obj2){
 			if(!obj1.hasOwnProperty(key)){
@@ -7,7 +6,6 @@
 			}
 		}
 	}
-	win.extend = extend;
 	//加载图片
 	function loadImage(imgObj,callback){
 		//存储加载后的图片对象
@@ -31,5 +29,8 @@
 			}
 		}
 	}
-	win.loadImage=loadImage;
-})(window)
+	return {
+		extend:extend,
+		loadImage:loadImage
+	};
+})

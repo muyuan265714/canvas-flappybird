@@ -1,4 +1,4 @@
-(function(win){
+define(["tools"],function(t){
 	function CreateBird(ctx,img,x,y,imgX,imgY){
 		// 初始化数据
 		this.ctx = ctx;
@@ -13,7 +13,7 @@
 		this.speed=5;
 		this.update();
 	}
-	extend(CreateBird.prototype,{
+	t.extend(CreateBird.prototype,{
 		// 原型添加方法
 		draw:function(){
 			this.y+=this.speed;
@@ -57,5 +57,5 @@
 		}
 		return bird;
 	}
-	win.getBird = getBird;
-})(window)
+	return getBird;
+})

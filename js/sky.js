@@ -1,4 +1,4 @@
-(function(win){
+define(["tools"],function(t){
 	function CreatMap(ctx,img,speed){
 		this.ctx = ctx;
 		this.img = img;
@@ -7,7 +7,7 @@
 		CreatMap.num ++;
 	}
 	CreatMap.num = 0;
-	extend(CreatMap.prototype,{
+	t.extend(CreatMap.prototype,{
 		draw:function(){
 			this.ctx.drawImage(this.img,this.x,0);
 		},
@@ -21,5 +21,5 @@
 	function getSky(ctx,img,speed){
 		return new CreatMap(ctx,img,speed);
 	}
-	win.getSky = getSky;
-})(window)
+	return getSky;
+})

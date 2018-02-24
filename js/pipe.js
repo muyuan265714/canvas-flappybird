@@ -1,4 +1,4 @@
-(function(win){
+define(["tools"],function(t){
 	function CreatePipe(ctx,imgDown,imgUp,x,space,speed){
 		this.ctx = ctx;
 		this.imgDown = imgDown;
@@ -11,7 +11,7 @@
 		CreatePipe.num++;
 	}
 	CreatePipe.num = 0;
-	extend(CreatePipe.prototype,{
+	t.extend(CreatePipe.prototype,{
 		draw:function(){
 			this.ctx.drawImage(this.imgDown,this.x,-this.yUp);
 			this.ctx.drawImage(this.imgUp,this.x,this.yDown);
@@ -34,5 +34,5 @@
 	function getPipe(ctx,imgDown,imgUp,x,space,speed){
 		return new CreatePipe(ctx,imgDown,imgUp,x,space,speed);
 	}
-	win.getPipe = getPipe;
-})(window)
+	return getPipe;
+})
